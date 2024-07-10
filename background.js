@@ -1,4 +1,3 @@
-// background.js
 
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
@@ -40,6 +39,7 @@ function saveWord(selectedText) {
 
 function openSpeedReadingMode(selectedText) {
   chrome.storage.local.set({ selectedText: selectedText }, () => {
+    console.log("Opened spreeder window");
     window.open(chrome.runtime.getURL("speed_reading.html"));
   });
 }
