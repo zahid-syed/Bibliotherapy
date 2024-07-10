@@ -1,33 +1,32 @@
 {
-    "manifest_version": 3,
-    "name": "Bibliotherapy",
-    "version": "1.0",
-    "description": "Helps read books/text faster and saves vocabulary.",
-    "permissions": [
-      "activeTab",
-      "storage",
-      "contextMenus",
-      "scripting"
-    ],
-    "background": {
-      "service_worker": "background.js"
-    },
-    "action": {
-      "default_popup": "popup.html",
-      "default_icon": "icon.png"
-       
-    },
-    "content_scripts": [
-      {
-        "matches": ["<all_urls>"],
-        "js": ["content.js"]
-      }
-    ],
-    "web_accessible_resources": [
-      {
-        "resources": ["speed_reading.html"],
-        "matches": ["<all_urls>"]
-      }
-    ]
-  }
-  
+  "manifest_version": 3,
+  "name": "Bibliotherapy",
+  "version": "1.0",
+  "description": "Helps read books/text faster and saves vocabulary.",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "contextMenus",
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+     
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["speed_reading.html"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
