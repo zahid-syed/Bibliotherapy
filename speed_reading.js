@@ -1,4 +1,3 @@
-// speed_reading.js
 
 document.addEventListener("DOMContentLoaded", () => {
   chrome.storage.local.get("selectedText", (data) => {
@@ -20,7 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let wordIndex = 0;
     let readingInterval;
     let readingSpeed = 200; // Initial speed in milliseconds
-    let isReading = false; // Track reading state
     let isPaused = false; // Track pause state
 
     startButton.addEventListener("click", toggleReading);
@@ -34,19 +32,17 @@ document.addEventListener("DOMContentLoaded", () => {
         clearInterval(readingInterval);
         readingInterval = null;
         startButton.textContent = "Start Reading";
-        isReading = false;
       } else {
         if (wordIndex >= words.length) {
-          wordIndex = 0; // Reset word index if it has reached the end
+          wordIndex = 0; // Reset word index at the end
         }
         startButton.textContent = "Stop Reading";
         readingInterval = setInterval(displayWord, readingSpeed);
-        isReading = true;
       }
     }
 
     function displayWord() {
-      if (isPaused) return; // Do not proceed if paused
+      if (isPaused) return; 
 
       if (wordIndex < words.length) {
         textDisplay.textContent = words[wordIndex];
@@ -55,7 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
         clearInterval(readingInterval);
         startButton.textContent = "Start Reading";
         wordIndex = 0;
-        isReading = false;
       }
     }
 

@@ -27,3 +27,7 @@ button {
   font-size: 1em;
   cursor: pointer;
 }
+
+.word-entry {
+  margin-bottom: 10px;
+}

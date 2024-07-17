@@ -2,7 +2,7 @@
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
     id: "saveWord",
-    title: "Save word to dictionary",
+    title: "Save word/phrase to dictionary",
     contexts: ["selection"]
   });
 
@@ -33,13 +33,15 @@ function saveWord(selectedText) {
   chrome.storage.sync.get("dictionary", (data) => {
     let dictionary = data.dictionary || [];
     dictionary.push({ word: selectedText, note: "" });
-    chrome.storage.sync.set({ dictionary });
+    chrome.storage.sync.set({ dictionary }, () => {
+      console.log('Word/phrase saved:', selectedText);
+    });
   });
 }
 
 function openSpeedReadingMode(selectedText) {
   chrome.storage.local.set({ selectedText: selectedText }, () => {
-    console.log("Opened spreeder window");
-    window.open(chrome.runtime.getURL("speed_reading.html"));
+    window.open(chrome.runtime.getURL("speed_reading.html") + `?cachebuster=${new Date().getTime()}`);
   });
 }
+
